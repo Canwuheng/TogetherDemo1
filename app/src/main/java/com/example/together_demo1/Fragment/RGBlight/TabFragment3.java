@@ -1,4 +1,5 @@
 package com.example.together_demo1.Fragment.RGBlight;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -45,22 +46,27 @@ public class TabFragment3 extends Fragment implements View.OnClickListener {
         bt_check_select = view.findViewById(R.id.bt_check_select);
         check_tablelayout = view.findViewById(R.id.check_tablelayout);
 
-        bt_check_select.setOnClickListener(this);
+        bt_check_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                check_tablelayout.removeAllViews();
+                if (check_spinner.getSelectedItem().toString().equals("时间升序")) {
+                    selects("desc");
+                    Toast.makeText(getContext(), "查询成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    selects("asc");
+                    Toast.makeText(getContext(), "查询成功", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_check_select:
-                check_tablelayout.removeAllViews();
-                if (check_spinner.getSelectedItem().toString().equals("时间升序")) {
-                    selects("desc");
-                    Toast.makeText(getContext(),"查询成功",Toast.LENGTH_SHORT).show();
-                } else {
-                    selects("asc");
-                    Toast.makeText(getContext(),"查询成功",Toast.LENGTH_SHORT).show();
-
-                }
 
                 break;
         }
@@ -68,14 +74,14 @@ public class TabFragment3 extends Fragment implements View.OnClickListener {
 
     private void selects(String order) {
         List<MyCheck> checkList = LitePal.order("updatetime" + order).find(MyCheck.class);
-        tableadd("序号","车号","充值金额(元)","操作人","充值时间");
+        tableadd("序号", "车号", "充值金额(元)", "操作人", "充值时间");
         for (int i = 0; i < checkList.size(); i++) {
-            tableadd(String.valueOf(i+1),checkList.get(i).getCarid(),checkList.get(i).getChangmoney().toString(),checkList.get(i).getOperator(),checkList.get(i).getUpdatetime());
+            tableadd(String.valueOf(i + 1), checkList.get(i).getCarid(), checkList.get(i).getChangmoney().toString(), checkList.get(i).getOperator(), checkList.get(i).getUpdatetime());
         }
 
     }
 
-    private void tableadd(String id, String carid, String  money, String opener, String datetime) {
+    private void tableadd(String id, String carid, String money, String opener, String datetime) {
         TableRow tableRow = new TableRow(getContext());
         TextView textView1 = new TextView(getContext());
         TextView textView2 = new TextView(getContext());
@@ -101,11 +107,11 @@ public class TabFragment3 extends Fragment implements View.OnClickListener {
         textView4.setGravity(Gravity.CENTER_HORIZONTAL);
         textView5.setGravity(Gravity.CENTER_HORIZONTAL);
 
-        textView1.setPadding(5,3,5,3);
-        textView2.setPadding(5,3,5,3);
-        textView3.setPadding(5,3,5,3);
-        textView4.setPadding(5,3,5,3);
-        textView5.setPadding(5,3,5,3);
+        textView1.setPadding(5, 3, 5, 3);
+        textView2.setPadding(5, 3, 5, 3);
+        textView3.setPadding(5, 3, 5, 3);
+        textView4.setPadding(5, 3, 5, 3);
+        textView5.setPadding(5, 3, 5, 3);
 
         textView1.setTextSize(13f);
         textView2.setTextSize(13f);

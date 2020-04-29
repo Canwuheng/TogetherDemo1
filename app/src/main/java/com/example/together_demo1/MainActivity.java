@@ -3,6 +3,7 @@ package com.example.together_demo1;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toolbar;
@@ -52,12 +53,14 @@ public class MainActivity extends AppCompatActivity {
         mytoolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dl_mydl.openDrawer(GravityCompat.START);
+                dl_mydl.openDrawer(Gravity.START);
             }
         });
-
         //设置Drawer
         dl_mydl.setStatusBarBackgroundColor(Color.parseColor("#000000"));
+
+        //解决滑动后颜色变灰
+        dl_mydl.setScrimColor(Color.TRANSPARENT);
 
         //侧滑抽屉监听
         dl_mydl.addDrawerListener(new DrawerLayout.DrawerListener() {

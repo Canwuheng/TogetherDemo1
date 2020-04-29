@@ -93,7 +93,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener {
                 carid = sp_number.getSelectedItem().toString();
                 List<User> users = LitePal.select("banlance").where("carid=?",carid).find(User.class);
                 banlance = users.get(0).getBanlance();
-                tv_money.setText(banlance.toString());
+                tv_money.setText(banlance.toString()+"元");
                 Toast.makeText(getContext(),"查询成功",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_in:
